@@ -1,0 +1,992 @@
+<!DOCTYPE html>
+<html lang="en">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600&display=swap');
+
+:root{
+    --green:#0d9979;
+}
+
+*{
+    font-family: 'Open Sans', sans-serif;
+    margin:0; padding:0;
+    box-sizing: border-box;
+    text-transform: capitalize;
+    text-decoration: none;
+    transition: all .5s cubic-bezier(.37,1.14,.26,1.24);
+}
+
+*::selection{
+    background:var(--green);
+    color:#fff;
+}
+
+html{
+    font-size: 62.5%;
+    overflow-x: hidden;
+}
+
+.btn{
+    height:3.5rem;
+    width:15rem;
+    background:none;
+    outline:none;
+    border:.2rem solid var(--green);
+    color:var(--green);
+    font-size: 2rem;
+    margin:1rem 0;
+    cursor: pointer;
+    overflow: hidden;
+    z-index: 0;
+    position: relative;
+}
+
+.btn::before, .btn::after{
+    position: absolute;
+    content: '';
+    top:0; left:0;
+    height:100%;
+    width: 100%;
+    background:var(--green);
+    z-index: -1;
+    transition: all 0.5s cubic-bezier(.37,1.14,.26,1.24);
+}
+
+.btn::before{
+    clip-path: polygon(0 0, 0 0, 0 0);
+}
+
+.btn:hover:before{
+    clip-path: polygon(0 0, 0 100%, 100% 0);
+}
+
+.btn::after{
+    clip-path: polygon(100% 100%, 100% 100%, 100% 100%);
+}
+
+.btn:hover:after{
+    clip-path: polygon(100% 0%, 0% 100%, 100% 100%);
+}
+
+.btn:hover{
+    color:#fff;
+}
+
+.heading{
+    text-align: center;
+    font-size: 4rem;
+    color:#555;
+    padding:1rem;
+    padding-top: 7rem;
+}
+
+.heading i{
+    color:var(--green);
+    font-size: 2rem;
+}
+
+
+header{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background:#fff;
+    box-shadow: 0 .1rem .3rem rgba(0,0,0,.3);
+    position: fixed;
+    top:0; left:0;
+    z-index: 1000;
+    padding: 1rem 5rem;
+    width: 100%;
+}
+
+header .logo{
+    color:var(--green);
+    font-size: 3rem;
+}
+
+header .navbar ul{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    list-style: none;
+}
+
+header .navbar ul li{
+    margin:0 1rem;
+}
+
+header .navbar ul li a{
+    font-size: 2rem;
+    color:#666;
+}
+
+header .navbar ul li a:hover{
+    color:var(--green);
+}
+
+header .fa-bars{
+    font-size: 3rem;
+    color:#666;
+    cursor: pointer;
+    display: none;
+}
+
+.home{
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: url(../images/home-bg.jpg) no-repeat;
+    background-size: cover;
+    background-position: center;
+}
+
+.home .content{
+    text-align: center;
+    padding:1rem;
+}
+
+.home .content h1{
+    font-size: 7rem;
+    color:var(--green);
+}
+
+.home .content p{
+    font-size: 1.9rem;
+    color:#333;
+    padding:1rem 0;
+    width: 70rem;
+}
+
+.about .row{
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    flex-wrap: wrap;
+}
+
+.about .row .image{
+    flex:1 1 40rem;
+    padding:2rem;
+}
+
+.about .row .image img{
+    width: 100%;
+}
+
+.about .row .content{
+    flex:1 1 40rem;
+    padding:2rem;
+}
+
+.about .row .content h3{
+    font-size: 3rem;
+    color:var(--green);
+}
+
+.about .row .content p{
+    font-size: 1.5rem;
+    color:#666;
+    padding:1rem 0;
+}
+
+.about .box-container{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.about .box-container .box{
+    padding:2rem 1rem;
+    text-align: center;
+    border:.2rem solid var(--green);
+    flex:1 1 20rem;
+    margin:2rem;
+}
+
+.about .box-container .box i{
+    color:var(--green);
+    font-size: 4rem;
+}
+
+.about .box-container .box h3{
+    color:#333;
+    font-size: 2.5rem;
+    padding:1rem 0;
+}
+
+.about .box-container .box p{
+    color:#666;
+    font-size: 1.7rem;
+}
+
+.service{
+    background:#f0f0f0;
+    min-height: 100vh;
+}
+
+.service .box-container{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    width: 80%;
+    margin:0 auto;
+}
+
+.service .box-container .box{
+    flex:1 1 25rem;
+    padding:2rem 1rem;
+    text-align: center;
+    background:#fff;
+    border:.2rem solid var(--green);
+    margin:2rem;
+    cursor: pointer;
+}
+
+.service .box-container .box i{
+    color: var(--green);
+    font-size: 4rem;
+    padding:1rem 0;
+}
+
+.service .box-container .box h3{
+    color: #333;
+    font-size: 2rem;
+}
+
+.service .box-container .box p{
+    color: #666;
+    font-size: 1.5rem;
+    padding:1rem 0;
+}
+
+.service .box-container .box a{
+    color:#333;
+    font-size: 1.7rem;
+}
+
+.service .box-container .box a:hover{
+    color:var(--green);
+}
+
+.service .box-container .box:hover{
+    box-shadow: 0 .3rem .5rem rgba(0,0,0,.3);
+}
+
+.project{
+    background:#333;
+    min-height: 100vh;
+}
+
+.project .heading{
+    color:#fff;
+}
+
+.project .box-container{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    padding:2rem 0;
+    width: 90%;
+    margin:0 auto;
+}
+
+.project .box-container .box{
+    flex: 1 1 30rem;
+    height: 22rem;
+    box-shadow: 0 .3rem .5rem #000;
+    overflow: hidden;
+    position: relative;
+    margin:1rem;
+}
+
+.project .box-container .box img{
+    height:100%;
+    width:100%;
+    object-fit: cover;
+}
+
+.project .box-container .box .icons{
+    height:100%;
+    width:100%;
+    position: absolute;
+    top:100%; left: 0;
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-around;
+    background:linear-gradient(transparent, rgba(0,0,0,.7));
+    transform: scale(0);
+}
+
+.project .box-container .box:hover .icons{
+    top:0;
+    transform: scale(1);
+}
+
+.project .box-container .box .icons a{
+    font-size: 3rem;
+    color:#fff;
+    margin:3rem 0;
+    text-shadow: 0 .3rem .5rem #000;
+    transform: translateY(13rem);
+    transition-delay: calc(.2s * var(--i));
+}
+
+.project .box-container .box:hover .icons a{
+    transform: translateY(0rem);
+}
+
+.donate{
+    position: relative;
+    z-index: 0;
+    min-height: 100vh;
+    padding-bottom: 3rem;
+}
+
+.donate .heading {
+    color:#545252;
+}
+
+.donate .video-container video{
+    position: absolute;
+    top:0; left:0;
+    height:100%;
+    width:100%;
+    object-fit: cover;
+    z-index: -1;
+}
+
+.donate .form-container form{
+    width:80%;
+    margin:2rem auto;
+    padding:2rem;
+    background:rgba(255,255,255,.1);
+    backdrop-filter: blur(.4rem);
+    box-shadow: 0 .3rem .5rem #000;
+    text-align: center;
+    border-top: .1rem solid rgba(255,255,255,.3);
+    border-left: .1rem solid rgba(255,255,255,.3);
+}
+
+.donate .form-container form .inputBox{
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+
+.donate .form-container form .inputBox input, select{
+    height:4rem;
+    width: 49%;
+    background:#fff;
+    color:#333;
+    padding:0 1rem;
+    margin:1rem 0;
+    font-size: 1.7rem;
+    outline: none;
+    border:none;
+}
+
+.donate .form-container form textarea{
+    height:20rem;
+    width: 100%;
+    background:#fff;
+    color:#333;
+    padding:1rem;
+    margin:1rem 0;
+    font-size: 1.7rem;
+    outline: none;
+    border:none;
+    resize: none;
+}
+
+.donate .form-container form input[type="submit"]{
+    color:#fff;
+    border-color: #fff;
+}
+
+.donate .form-container form input[type="submit"]:hover{
+    color:var(--green);
+    border-color: var(--green);
+    background:#fff;
+}
+
+.post{
+    min-height: 100vh;
+}
+
+.post .box-container{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    padding:2rem 0;
+}
+
+.post .box-container .box{
+    width: 35rem;
+    box-shadow: 0 .3rem .5rem rgba(0,0,0,.3);
+    margin:2rem 1.5rem;
+}
+
+.post .box-container .box img{
+    height: 23rem;
+    width: 100%;
+    object-fit: cover;
+}
+
+.post .box-container .box .content{
+    padding:1rem;
+}
+
+.post .box-container .box .content span{
+    font-size: 1.5rem;
+    color:#666;
+}
+
+.post .box-container .box .content span i{
+    padding:1rem 0;
+    color:var(--green);
+} 
+
+.post .box-container .box .content h3{
+    font-size: 2.4rem;
+    color:#333;
+}
+
+.post .box-container .box .content:hover h3{
+    text-decoration: underline;
+    color:var(--green);
+}
+
+.post .box-container .box .content p{
+    color:#666;
+    font-size: 1.5rem;
+}
+
+.footer{
+    background:#333;
+}
+
+.footer .box-container{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    width: 95%;
+    margin:0 auto;
+}
+
+.footer .box-container .box{
+    margin:2rem;
+    flex:1 1 25rem;
+}
+
+.footer .box-container .box .logo{
+    font-size: 3rem;
+    color:var(--green);
+}
+
+.footer .box-container .box p{
+    font-size: 1.7rem;
+    color:#ccc;
+    padding:1rem 0;
+}
+
+.footer .box-container .box .share{
+    text-align: center;
+    font-size: 3rem;
+    color:#fff;
+}
+
+.footer .box-container .box:nth-child(2) a{
+    text-align: center;
+    font-size: 1.7rem;
+    color:#eee;
+    display: block;
+    padding:.5rem 0;
+}
+
+.footer .box-container .box:nth-child(2) a:hover{
+    text-decoration: underline;
+}
+
+.footer .box-container .box .letter{
+    font-size: 3rem;
+    color:#fff;
+}
+
+.footer .box-container .box form input[type="email"]{
+    padding:0 1rem;
+    outline:none;
+    border:.2rem solid var(--green);
+    background:none;
+    font-size: 1.7rem;
+    color:#fff;
+    height:4rem;
+    width:74%;
+}
+
+.footer .box-container .box form button{
+    outline:none;
+    border:none;
+    background:var(--green);
+    font-size: 1.9rem;
+    color:#fff;
+    height:4rem;
+    width:25%;
+    cursor: pointer;
+}
+
+.footer .box-container .box form button:hover{
+    color:var(--green);
+    background:none;
+    border:.1rem solid var(--green);
+}
+
+.footer .credit{
+    text-align: center;
+    color:#efeaea;
+    font-size: 2rem;
+    width:85%;
+    margin:0 auto;
+    padding:2rem 1rem;
+    border-top: .1rem solid #ccc;
+}
+
+.footer .credit span{
+    color:var(--green);
+}
+
+
+/* media queries  */
+
+@media (max-width:768px){
+
+    html{
+        font-size: 55%;
+    }
+
+    header .fa-bars{
+        display: block;
+    }
+
+    header .navbar{
+        position: fixed;
+        top:-100rem; left:0;
+        width: 100%;
+        border-top: .1rem solid #ccc;
+        opacity: 0;
+    }
+
+    header .navbar ul{
+        flex-flow: column;
+        padding:2rem 0;
+        background-color: #fff;
+    }
+
+    header .navbar ul li{
+        width: 100%;
+        text-align: center;
+        margin:1rem 0;
+    }
+
+    header .navbar ul li a{
+        font-size: 3rem;
+        display: block;
+    }
+
+    .fa-times{
+        transform: rotate(180deg);
+    }
+
+    header .nav-toggle{
+        top:6rem; 
+        opacity: 1;
+    }
+
+    .home .content h1{
+        font-size: 5rem;
+    }
+
+    .home .content p{
+        width: auto;
+    }
+
+    .service .box-container{
+        width: auto;
+    }
+
+}
+
+@media (max-width:500px){
+    .donate .form-container form .inputBox input, select{
+        width: 100%;
+    }
+    .donate .form-container form{
+        width: 90%;
+    }
+}
+    </style>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Complete Responsive Save Nature Website Design Tutorial</title>
+
+    <!-- font awesome cdn link  -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css">
+
+    <!-- custom css file link  -->
+    <link rel="stylesheet" href="css/style.css">
+
+</head>
+<body>
+    
+<!-- header section starts  -->
+
+<header>
+
+<a href="#" class="logo"><i class="fas fa-seedling"></i>green</a>
+
+<nav class="navbar">
+    <ul>
+        <li><a href="#home">home</a></li>
+        <li><a href="#about">about</a></li>
+        <li><a href="#service">service</a></li>
+        <li><a href="#pictures">pictures</a></li>
+        <li><a href="#donate">donate</a></li>
+     
+    </ul>
+</nav>
+
+<div class="fas fa-bars"></div>
+
+</header>
+
+<!-- header section ends -->
+
+<!-- home section starts  -->
+
+<section class="home" id="home">
+
+<div class="content">
+
+    <h1>FOREST HUB</h1>
+    <p>"Forests are the lungs of the earth, let's keep them healthy."</p>
+    <a href="#"><button class="btn">explore.</button></a>
+
+</div>
+
+</section>
+
+<!-- home section ends -->
+
+<!-- about section starts  -->
+
+<section class="about" id="about">
+
+<h1 class="heading"> <i class="fas fa-quote-left"></i> about us <i class="fas fa-quote-right"></i> </h1>
+
+<div class="row">
+
+    <div class="image">
+        <img src="C:/Users/Lenovo/Downloads/imim.jpeg" alt="">
+    </div>
+
+    <div class="content">
+        <h3>together we can save the forest resources</h3>
+        <p>Welcome to our forest resources website, where we aim to provide you with comprehensive information about the various resources available in forests around the world.</p>
+        <p>Our website is dedicated to promoting the sustainable use of forest resources, and we believe that through education and awareness, we can help protect our forests for generations to come.</p>
+        <h100 class="heading"> <i class="fas fa-quote-left"></i> forest resources <i class="fas fa-quote-right"></i> </h100>
+        <p>Timber is one of the most valuable forest resources, providing a range of products such as lumber, paper, and furniture. Our forest management practices ensure that timber harvesting is done sustainably, to minimize environmental impact and preserve the forest for future generations.</p>
+        <p>Forests are home to a diverse range of wildlife, from small mammals to large predators. We recognize the importance of preserving wildlife habitats and work to maintain a healthy balance between human use and wildlife conservation. Visitors to our forests can enjoy observing wildlife in its natural habitat.</p>
+        <p>Forests play a critical role in maintaining water quality and quantity. They are a source of drinking water for many communities and provide habitat for fish and other aquatic species. We take measures to protect water resources and ensure that our forestry practices do not harm the water supply.</p>
+        <p>Forests provide a range of recreational opportunities, including hiking, camping, and hunting. We encourage visitors to enjoy the natural beauty of the forest while respecting its delicate balance. Our forest management practices ensure that recreational activities are compatible with sustainable forest use.</p>
+        <p>Forests provide a variety of non-timber forest products, such as berries, mushrooms, and medicinal plants. We work to promote the sustainable harvest of these resources, to ensure that they are available for future generations. Our forest management practices also aim to protect the forest ecosystem and the species that rely on it.</p>
+    </div>
+
+
+</div>
+
+<div class="box-container">
+
+    <div class="box">
+        <i class="fas fa-users"></i>
+        <h3>policies</h3>
+        <p>1.National Forest Policy, 1988: This policy aims to protect, conserve and develop India's forests, and to maintain environmental stability. It recognizes the importance of forests in providing livelihoods to forest-dependent communities and in regulating the ecological balance.</p><br><br>
+
+            <p>2.Forest (Conservation) Act, 1980: This act provides for the conservation of forests and for matters connected therewith. It regulates diversion of forest land for non-forest purposes and requires the prior approval of the central government for any such diversion.</p><br><br>
+            
+            <p>3.Wildlife Protection Act, 1972: This act provides for the protection of wild animals and plants and for matters connected therewith. It regulates hunting and poaching of wildlife, and prohibits trade in wildlife and their derivatives.</p><br><br>
+            
+            <p>4.Joint Forest Management (JFM) program: This program involves the participation of local communities in the management of forest resources. It aims to involve people in the conservation and development of forests and to ensure sustainable use of forest resources.</p><br><br>
+            
+            <p>5.Compensatory Afforestation Fund (CAF) Act, 2016: This act provides for the establishment of the Compensatory Afforestation Fund and Management Authority (CAMPA) to promote afforestation and regeneration activities. It also provides for the utilization of funds collected for diversion of forest land for non-forest purposes</p><br><br>
+            <br><br>
+            for more information click the below link
+        <nav>
+            <a href="https://www.fao.org/forestry/en/">policies</a> 
+          </nav>
+    </div>
+
+    <div class="box">
+        <i class="fas fa-tree"></i>
+        <h3>flora</h3>
+        <p>1.Trees: Forests are defined by the presence of trees, which provide a variety of ecosystem services, including timber, shade, and habitat for wildlife. Common tree species found in forests include oak, maple, birch, pine, and spruce.</p><br><br>
+        <p>2.Shrubs: Shrubs are shorter woody plants that grow in the understory of forests. They provide habitat for wildlife and help to stabilize the soil. Common shrub species found in forests include huckleberry, blueberry, and rhododendron.</p><br><br>
+        <p>3.Herbs: Herbs are non-woody plants that grow in the forest understory or on the forest floor. They include ferns, mosses, and wildflowers such as trillium and mayapple.</p><br><br>
+        <p>4.Fungi: Fungi are an important component of forest ecosystems, as they break down dead organic matter and recycle nutrients. They also form symbiotic relationships with trees and other plants, providing them with nutrients in exchange for sugars. Common forest fungi include mushrooms, lichens, and mycorrhizal fungi.</p><br><br>
+        <p>5.Indicator species names: These are species that are used to indicate the health or quality of a forest ecosystem. For example, certain species of lichens are used as indicators of air pollution levels in forests.</p><br><br>
+        <p>6.Timber species names: These are species of trees that are harvested for their wood and are important resources in the forest industry. Examples include oak, pine, and maple.</p><br><br>
+        <p>7.Non-timber forest product species names: These are species of plants that are harvested from forests for their non-wood products, such as berries, mushrooms, and medicinal herbs.</p><br><br>
+        <p>8.Invasive species names: These are non-native species that can have negative impacts on forest ecosystems by outcompeting native species or disrupting ecosystem processes. Examples include Japanese knotweed and European gypsy moth.</p><br><br>  
+        <br><br>
+        for more information click the below link  
+        <nav>
+            <a href="https://www.globalforestwatch.org/">flora</a> 
+            <a href="https://www.iucn.org/species">IUCN</a> 
+          </nav>
+    </div>
+
+    <div class="box">
+        <i class="fas fa-paw"></i>
+        <h3>fauna</h3>
+        <p>1.Mammals: There are many mammals that live in forest ecosystems, including deer, elk, bears, wolves, foxes, squirrels, chipmunks, raccoons, skunks, and many others.</p>
+        <p>2.Birds: Forests are also home to many bird species, including woodpeckers, owls, hawks, eagles, warblers, thrushes, and many others.</p>
+        <p>3.Reptiles and amphibians: Forests provide habitat for many reptile and amphibian species, including snakes, lizards, frogs, toads, and salamanders.</p>
+        <p>4.Insects: Forests are teeming with insect life, including beetles, ants, bees, wasps, moths, butterflies, and many others. Many of these insects play important roles in pollination, nutrient cycling, and other ecosystem processes.</p>
+        <p>5.Fish: Forest streams and rivers provide important habitat for many fish species, including trout, salmon, and bass.</p>
+        <p>6.Arachnids: Forests are also home to many species of spiders and other arachnids, including ticks and mites.</p>
+        <p>7.Crustaceans: Some forest ecosystems, such as mangrove forests, are home to a variety of crustaceans, including crabs and shrimp.</p>
+        <br><br>
+        for more information click the below link  
+        <nav>
+
+            <a href="https://www.iucn.org/species">fauna-IUCN</a> 
+          </nav>
+       
+    </div>
+
+    <div class="box">
+        <i class="fas fa-donate"></i>
+        <h3>Economy</h3>
+        <p>1.Timber: According to the Indian Council of Forestry Research and Education, the production of timber and other forest products in India was estimated at INR 49,559 crore (approximately USD 6.7 billion) in 2018.</p><br><br>
+
+        <p> 2.Non-timber forest products: Non-timber forest products (NTFPs) are an important source of income for many forest-dependent communities in India. A study by the Ministry of Environment, Forest and Climate Change estimated the value of NTFPs in India at INR 28,000 crore (approximately USD 3.8 billion) in 2014.</p><br><br>
+            
+        <p>3. Tourism and recreation: Forests in India provide important opportunities for ecotourism and recreation, including wildlife watching, trekking, and camping. According to a report by the World Travel and Tourism Council, the direct contribution of travel and tourism to India's GDP was INR 16,91,500 crore (approximately USD 229 billion) in 2019, with nature-based tourism accounting for a significant portion of this.</p><br><br>
+            
+        <p>  4.Carbon sequestration: Forests in India play an important role in carbon sequestration, helping to mitigate climate change. According to a report by the Ministry of Environment, Forest and Climate Change, the total carbon stock in India's forests was estimated at 7,124 million tonnes in 2019. The value of carbon sequestration in India's forests is difficult to estimate but is likely significant.</p><br><br>
+            
+        <p>  5. Watershed protection: Forests in India also provide important benefits for watershed protection and water security. According to a report by the Indian Institute of Forest Management, the total economic value of ecosystem services provided by forests in India was estimated at INR 6,97,720 crore (approximately USD 94 billion) per year.</p></p><br><br>
+        <nav>
+            <a href="https://www.un.org/esa/forests/wp-content/uploads/2015/12/EcoContrForests.pdf">economy</a> 
+          </nav>
+       
+        
+    </div>
+    
+</div>
+
+</section>
+
+<!-- about section ends -->
+
+<!-- service section starts  -->
+
+<section class="service" id="service">
+
+<h1 class="heading"> <i class="fas fa-quote-left"></i> our services <i class="fas fa-quote-right"></i> </h1>
+
+<div class="box-container">
+
+    <div class="box">
+        <i class="fas fa-seedling"></i>
+        <h3>planting</h3>
+        
+        
+    </div>
+
+    <div class="box">
+        <i class="fas fa-recycle"></i>
+        <h3>recycle</h3>
+        
+    </div>
+
+    <div class="box">
+        <i class="fas fa-hand-holding-water"></i>
+        <h3>water saving</h3>
+    </div>
+
+    <div class="box">
+        <i class="fas fa-tree"></i>
+        <h3>tree saving</h3>
+    </div>
+
+    <div class="box">
+        <i class="fas fa-paw"></i>
+        <h3>animals saving</h3>    
+    </div>
+
+   
+
+</div>
+
+</section>
+
+<!-- service section ends -->
+
+<!-- project section starts  -->
+
+<section class="project" id="project">
+
+<h1 class="heading"> <i class="fas fa-quote-left"></i> pictorial view of types of forests and forest resources <i class="fas fa-quote-right"></i> </h1>
+
+<div class="box-container">
+
+    <div class="box">
+        <img src="C:/Users/Lenovo/Downloads/im1.jpg" alt="">
+        <div class="icons">
+            <a style="--i:1;" href="#" class="fas fa-heart"></a>
+            <a style="--i:2;" href="#" class="fas fa-share"></a>
+            <a style="--i:3;" href="#" class="fas fa-comment"></a>
+        </div>
+    </div>
+
+    <div class="box">
+        <img src="C:/Users/Lenovo/Downloads/im2.jpeg" alt="">
+        <div class="icons">
+            <a style="--i:1;" href="#" class="fas fa-heart"></a>
+            <a style="--i:2;" href="#" class="fas fa-share"></a>
+            <a style="--i:3;" href="#" class="fas fa-comment"></a>
+        </div>
+    </div>
+
+    <div class="box">
+        <img src="C:/Users/Lenovo/Downloads/im32.jpeg" alt="">
+        <div class="icons">
+            <a style="--i:1;" href="#" class="fas fa-heart"></a>
+            <a style="--i:2;" href="#" class="fas fa-share"></a>
+            <a style="--i:3;" href="#" class="fas fa-comment"></a>
+        </div>
+    </div>
+
+    <div class="box">
+        <img src="C:/Users/Lenovo/Downloads/im4.jpeg" alt="">
+        <div class="icons">
+            <a style="--i:1;" href="#" class="fas fa-heart"></a>
+            <a style="--i:2;" href="#" class="fas fa-share"></a>
+            <a style="--i:3;" href="#" class="fas fa-comment"></a>
+        </div>
+    </div>
+
+    <div class="box">
+        <img src="C:/Users/Lenovo/Downloads/im5.jpeg" alt="">
+        <div class="icons">
+            <a style="--i:1;" href="#" class="fas fa-heart"></a>
+            <a style="--i:2;" href="#" class="fas fa-share"></a>
+            <a style="--i:3;" href="#" class="fas fa-comment"></a>
+        </div>
+    </div>
+
+    <div class="box">
+        <img src="C:/Users/Lenovo/Downloads/im6.jpg"alt="">
+        <div class="icons">
+            <a style="--i:1;" href="#" class="fas fa-heart"></a>
+            <a style="--i:2;" href="#" class="fas fa-share"></a>
+            <a style="--i:3;" href="#" class="fas fa-comment"></a>
+        </div>
+    </div>
+
+</div>
+
+</section>
+
+<!-- project section ends -->
+
+<!-- donate section starts  -->
+
+<section class="donate" id="donate">
+
+<h1 class="heading"> <i class="fas fa-quote-left"></i> donate us<i class="fas fa-quote-right"></i> </h1>
+
+<div class="img-container">
+   
+<img src="C:\Users\Lenovo\Downloads\donate.png" alt="">
+</div>
+
+<div class="form-container">
+
+    <form action="">
+
+        <div class="inputBox">
+            <input type="text" placeholder="first name">
+            <input type="text" placeholder="last name">
+        </div>
+
+        <div class="inputBox">
+            <input type="email" placeholder="enter your email">
+            <select name="" id="">
+                <option value="" selected disabled>donation amount</option>
+                <option value="$5">$5</option>
+                <option value="$10">$10</option>
+                <option value="$15">$15</option>
+                <option value="$20">$20</option>
+            </select>
+        </div>
+
+        <textarea name="" id="" cols="30" rows="10" placeholder="message ( optional )"></textarea>
+
+        <input type="submit" class="btn">
+
+    </form>
+
+</div>
+
+</section>
+
+<!-- donate section ends -->
+
+
+<!-- footer section starts  -->
+
+<section class="footer">
+
+<div class="box-container">
+
+    <div class="box">
+        <a href="#" class="logo"><i class="fas fa-seedling"></i>green</a>
+        <p>THANK YOU FOR VISITING OUR  WEBSITE</p>
+    </div>
+
+    <div class="box">
+        <h3 class="share">share</h3>
+        <a href="#">facebook</a>
+        <a href="#">twitter</a>
+        <a href="#">instagram</a>
+        
+    </div>
+
+    <div class="box">
+        <h3 class="letter">newsletter</h3>
+        <form action="">
+            <input type="email" placeholder="enter your email">
+            <button type="submit" class="fas fa-paper-plane"></button>
+        </form>
+    </div>
+
+</div>
+
+<h1 class="credit">created by <span>sujith|naveen|nani</span> | all rights reserved. </h1>
+
+</section>
+
+<!-- footer section ends -->
+
+<!-- custom js file link  -->
+<script src="js/main.js"></script>
+
+</body>
+</html>
